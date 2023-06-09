@@ -84,6 +84,7 @@ namespace Sample_GUI_PBL
         {
             string logEntry = $"{DateTime.Now}: {message}";
             logFile.WriteLine(logEntry);
+            logFile.Flush();
         }
 
         private void LogSystemInfo()
@@ -108,28 +109,43 @@ namespace Sample_GUI_PBL
         {
 
         }
+     
 
-        private void button1_Click(object sender, EventArgs e)
+        private bool IsValidLogin(string username, string password)
+        {
+            // Implement your own logic for validating the username and password
+            // Return true if the login is valid, false otherwise
+            // Example: Check against a predefined list of valid usernames and passwords
+
+            // Replace this example logic with your own validation
+            string validUsername = "admin";
+            string validPassword = "password";
+
+            return username == validUsername && password == validPassword;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             StartCapture();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            logFile.Close(); // Close the log file when the form is closing
+        }
+
+
+        private void button2_Click_1(object sender, EventArgs e)
         {
             StopCapture();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click_1(object sender, EventArgs e)
         {
             CaptureFrame();
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            logFile.Close();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click_1(object sender, EventArgs e)
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
@@ -147,19 +163,6 @@ namespace Sample_GUI_PBL
             {
                 MessageBox.Show("Invalid username or password.");
             }
-        }
-
-        private bool IsValidLogin(string username, string password)
-        {
-            // Implement your own logic for validating the username and password
-            // Return true if the login is valid, false otherwise
-            // Example: Check against a predefined list of valid usernames and passwords
-
-            // Replace this example logic with your own validation
-            string validUsername = "admin";
-            string validPassword = "password";
-
-            return username == validUsername && password == validPassword;
         }
     }
 }
